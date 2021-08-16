@@ -3,6 +3,12 @@ const { Pizza } = require('../models');
 const pizzaController = {
     getAllPizza(req, res) {
         Pizza.find({})
+            .populate({
+                path: "comments",
+                select: "-__v"
+            })
+            .select("-__v")
+            .sort({ _id: -1 })
             .then(dbData => res.json(dbData))
             .catch(err => {
                 console.log(err);
@@ -11,6 +17,11 @@ const pizzaController = {
     },
     getPizzaById({ params }, res) {
         Pizza.findById(params.id)
+            .populate({
+                path: "comments",
+                select: "-__v"
+            })
+            .select("-__v")
             .then(dbData => {
                 if (!dbData) {
                     res.status(404).json({ message: "No pizza found with the provided ID" });
