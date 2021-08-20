@@ -114,7 +114,7 @@ function handleNewCommentSubmit(event) {
     body: JSON.stringify(formData)
   })
     .then(response => {
-      if (!reponse.ok) {
+      if (!response.ok) {
         throw new Error('Something went wrong!');
       }
       response.json();
