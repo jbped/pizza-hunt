@@ -10,7 +10,7 @@ const commentController = {
                     // Pushes comments with the appropriate ID to the appropriate pizza that they should be associated with
                     { $push: { comments: _id } },
                     // Returns the updated pizza
-                    { new: true }
+                    { new: true, runValidators: true }
                 )
             })
             .then(dbPizzaData => {
@@ -54,7 +54,7 @@ const commentController = {
             // Pushes the new reply to the replies arr
             { $push: { replies: body } },
             // Returns the updated comment
-            { new: true }
+            { new: true, runValidators: true }
         )
             .then(dbPizzaData => {
                 if (!dbPizzaData) {

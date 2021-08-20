@@ -7,8 +7,15 @@ const ReplySchema = new Schema(
             type: Schema.Types.ObjectId,
             default: () => new Types.ObjectId()
         },
-        replyBody: String,
-        writtenBy: String,
+        replyBody: {
+            type: String,
+            required: "Please provide text for the body of the reply",
+            trim: true
+        },
+        writtenBy: {
+            type: String,
+            required: "Please provide a name for the author of the reply"
+        },
         createdAt: {
             type: Date,
             default: Date.now,
@@ -24,8 +31,14 @@ const ReplySchema = new Schema(
 
 const CommentSchema = new Schema(
     {
-        writtenBy: String,
-        commentBody: String,
+        writtenBy: {
+            type: String,
+            required: "Please provide a name for the commenter"
+        },
+        commentBody: {
+            type: String,
+            required: "Please provide text for the body of the comment"
+        },
         createdAt: {
             type: Date,
             default: Date.now,
